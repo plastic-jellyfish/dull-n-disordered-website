@@ -31,7 +31,7 @@ function setup() {
   k=0.05;
   textFont(font);
   textSize(12);
-  fear = 0;
+  fear = 98;
 }
 
 function windowResized() {
@@ -91,7 +91,7 @@ function draw() {
 
   if (fear>=100) {
     let reset = createP('Good Job! You killed '+devkill+' Deviants & '+civilian+' Civilians today.\n Continue working Next Shift?');
-    reset.style('background','#0050ff')
+    reset.style('background','#02458880')
     reset.style('font-size','20px')
     reset.style('border','0')
     reset.style('padding','25px')
@@ -104,19 +104,19 @@ function draw() {
   noStroke();
   textSize(15);
   textAlign(RIGHT,CENTER);
-  text("ANXIETY :", (width/2)-10, droney-30);
-  text("DEVIANTS :", (width/2)-10, droney+0);
-  text("CIVILIANS :", (width/2)-10, droney+30);
-  text(devkill, (width/2)+10, droney+0);
-  text(civilian, (width/2)+10, droney+30);
+  text("Anxiety ", (width/2)-15, droney-30);
+  text("Deviants killed :", (width/2)+10, droney+0);
+  text("Civilians killed :", (width/2)+10, droney+25);
+  text(devkill, (width/2)+25, droney+0);
+  text(civilian, (width/2)+25, droney+25);
 
   noStroke();
   fill(255, 0, 0);
-  rect((width/2), droney-33, fear, 7,5);
+  rect((width/2)-10, droney-30, fear, 7,5);
   noFill();
   stroke(0);
   strokeWeight(1);
-  rect((width/2)-3, droney-34, 105, 10,5);
+  rect((width/2)-11, droney-32, 105, 11,5);
 }
 
 function restart() {

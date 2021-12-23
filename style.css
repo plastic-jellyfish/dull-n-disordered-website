@@ -23,15 +23,16 @@ html, body {
   margin: 1em;
 }
 
-.container1{
-  grid-column: span 2;
-  padding: 1em;
-  margin: .1em;
-}
-
 h1{
   font-size: 1.2rem;
   color: #0050ff;
+  /* color: #02458880; */
+}
+
+.container1{
+  grid-column: span 2;
+  /* padding: 1em; */
+  margin: .1em;
 }
 
 p{
@@ -74,5 +75,5 @@ p{
 }
 
 .btn:active{
-  background-color: #f8446b6b;
+  background-color: #f8d3db6b;
 }
