@@ -1,0 +1,72 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: #044085;  
+  font-family: "Zilla Slab";
+}
+
+.parent{
+  display: grid;
+  grid-template-columns: 30vw 65vw 5vw;
+  grid-template-rows: 10vh 80vh 10vh; 
+  justify-content: space-around;
+}
+
+.child{
+  /* border: 3px solid #333; */
+  background-color: #044085;  
+}
+
+.container0{
+  grid-column: span 1;
+  padding: 1em;
+}
+
+.container1{
+  grid-column: span 2;
+  padding: .5em;
+}
+
+h1{
+  font-size: 1.2rem;
+  color: white;
+}
+
+p{
+  font-size: .8rem;
+  width: 100%;
+  color: rgb(219, 219, 219);
+}
+
+.container2{
+  grid-column: span 1;
+}
+.container3{
+  width: 100%;
+  height: auto;
+  grid-column: span 3;
+}
+
+.container4{
+  grid-column: span 1;
+}
+
+.container5{
+  grid-column: span 3;
+  justify-self: center; 
+}
+
+.btn{
+  min-width: 55px;
+  max-width: 55px;
+  font-size: 1.7rem;
+  padding: .4em .4em;
+  margin: .6em;
+  background-color: #fa003670;
+  border: none;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  align-self: center;
+  border-radius: 35px;
+}
