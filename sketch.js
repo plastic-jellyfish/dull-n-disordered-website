@@ -90,23 +90,14 @@ function draw() {
   }
 
   if (fear>=100) {
-    let reset = createButton('// GAME OVER // *************** PLAY AGAIN');
-    reset.style('background','#0043fa80')
+    let reset = createP('Good Job! You killed '+devkill+' Deviants & '+civilian+' Civilians today.\n Continue working Next Shift?');
+    reset.style('background','#0050ff')
     reset.style('font-size','20px')
     reset.style('border','0')
-    reset.style('padding','15px')
-    reset.position(_width/2-100, _height/2)
-    // reset.size(200,100);
+    reset.style('padding','25px')
+    reset.position(_width/2-120, _height/2+50)
     reset.style('width','200px')
     reset.mousePressed(restart)
-    let div = createP('Good Job! You killed '+devkill+' Deviants & '+civilian+' Civilians today.');
-    div.style('background','#0043fa80')
-    div.style('font-size', '15px');
-    div.style('border','0')
-    div.style('padding','15px')
-    div.style('width','180px')
-    // div.size(200,AUTO);
-    div.position(_width/2-100,_height/2+100);
   }
 
   fill(0);
