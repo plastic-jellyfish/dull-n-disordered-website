@@ -1,5 +1,5 @@
 let _people = []; 
-let numPeople =50;
+let numPeople =100;
 let dronex, droney, dronew, droneh, shoot, dspeed, ex, dx=0, k;
 let fear;
 let devkill =0 , civilian =0, sec;
@@ -20,7 +20,7 @@ function setup() {
   background(0);
   dronex = width/2;
   droney = 0.15 * height;
-  dronew = 0.2 * width;
+  dronew = 0.1 * width;
   droneh = 0.2 * height;
   dspeed=1;
   shoot=50;
@@ -66,7 +66,7 @@ function draw() {
 
   noStroke();
   fill(255, 20);
-  for (let a=0; a<100; a+=10) {
+  for (let a=0; a<100; a+=20) {
     quad(eye, droney, eye, droney, dronex-((dronew-100)+a), height, dronex+((dronew-100)+a), height);
   }
   strokeWeight(5);
@@ -133,7 +133,7 @@ function restart() {
   fear = 0;
   devkill =0;
   civilian=0;
-  active = 30;
+  active = 20;
   // _people = new People[numPeople];
   for (let i=0; i<numPeople; i++) {
     newpeople = new People(i);
