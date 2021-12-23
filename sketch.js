@@ -19,7 +19,7 @@ function setup() {
   drone.parent('drone');
   background(0);
   dronex = width/2;
-  droney = 0.12 * height;
+  droney = 0.15 * height;
   dronew = 0.2 * width;
   droneh = 0.2 * height;
   dspeed=1;

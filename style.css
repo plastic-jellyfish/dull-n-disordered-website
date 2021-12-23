@@ -8,7 +8,7 @@ html, body {
 .parent{
   display: grid;
   grid-template-columns: 30vw 65vw 5vw;
-  grid-template-rows: 15vh 70vh 15vh; 
+  grid-template-rows: 20vh 60vh 20vh; 
   justify-content: space-around;
 }
 
@@ -20,11 +20,13 @@ html, body {
 .container0{
   grid-column: span 1;
   padding: 1em;
+  margin: 1em;
 }
 
 .container1{
   grid-column: span 2;
-  padding: .5em;
+  padding: 1em;
+  margin: .1em;
 }
 
 h1{
@@ -33,7 +35,7 @@ h1{
 }
 
 p{
-  font-size: .8rem;
+  font-size: .9rem;
   width: 100%;
   color: rgb(219, 219, 219);
 }
@@ -57,11 +59,11 @@ p{
 }
 
 .btn{
-  min-width: 55px;
-  max-width: 55px;
-  font-size: 1.7rem;
+  min-width: 65px;
+  max-width: 65px;
+  font-size: 2rem;
   padding: .4em .4em;
-  margin: .6em;
+  margin: .7em;
   background-color: #fa003670;
   border: none;
   color: white;
