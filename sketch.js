@@ -31,7 +31,7 @@ function setup() {
   k=0.05;
   textFont(font);
   textSize(12);
-  fear = 98;
+  fear = 0;
 }
 
 function windowResized() {
