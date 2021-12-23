@@ -42,7 +42,7 @@ function windowResized() {
 }
 
 function draw() {
-  background(0);
+  background(10);
   let eye = map(dronex,0,width, width/2 - 50, width/2 + 50);
   fill(255);
   noStroke();
