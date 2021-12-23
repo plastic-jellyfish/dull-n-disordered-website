@@ -46,7 +46,7 @@ function draw() {
   let eye = map(dronex,0,width, width/2 - 50, width/2 + 50);
   fill(255);
   noStroke();
-  ellipse(width/2, droney, 250, droneh-20);
+  ellipse(width/2, droney, 250, droneh+10);
   beginShape();
     vertex(width/2 - 150, droney);
     vertex(width/2 - 100, droney-50);
@@ -99,7 +99,7 @@ function draw() {
     // reset.size(200,100);
     reset.style('width','200px')
     reset.mousePressed(restart)
-    let div = createP('You killed '+devkill+' Deviants today.' + '\n You killed '+civilian+' Civilians today.');
+    let div = createP('Good Job! You killed '+devkill+' Deviants & '+civilian+' Civilians today.');
     div.style('background','#0043fa80')
     div.style('font-size', '15px');
     div.style('border','0')
@@ -268,6 +268,30 @@ function drone() {
     //     }
     // })
 
+    select(".Shoot").touchStarted(()=>{
+      shoot=255;
+      for (let i=0; i<active ; i++) {
+        if ((_people[i].x >= (dronex-_people[i].head)) && (_people[i].x <= (dronex+_people[i].head))) {
+          if ((_people[i].deviant == 1) && (_people[i].life==1)) {
+            devkill=devkill+1;
+            if (fear>10) {
+              fear=fear-1;
+            }
+          }
+          else if ((_people[i].deviant == 0) && (_people[i].life==1)) {
+            civilian=civilian+1;
+            fear=fear+1;
+          }
+          _people[i].kill();
+        }
+      }
+    })
+    select(".Shoot").touchEnded(()=>{
+      if (shoot == 255) {
+          shoot=50;
+        }
+    })
+    
     select(".Shoot").mousePressed(()=>{
         shoot=255;
         for (let i=0; i<active ; i++) {

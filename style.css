@@ -70,3 +70,7 @@ p{
   align-self: center;
   border-radius: 35px;
 }
+
+.btn:active{
+  background-color: #f8446b6b;
+}
