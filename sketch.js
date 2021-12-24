@@ -7,6 +7,8 @@ let savedTime = 0;
 let active;
 let totalTime = 1000;
 let _width, _height;
+let a=0 ,b=0;
+let s=0;
 
 function preload() {
     font = loadFont('assets/ZillaSlab-Regular.ttf');
@@ -29,9 +31,11 @@ function setup() {
   active=20;
   ex=0;
   k=0.05;
+  s = width;
   textFont(font);
   textSize(12);
-  fear = 0;
+  fear = 90;
+  rectMode(CORNERS);
 }
 
 function windowResized() {
@@ -43,6 +47,7 @@ function windowResized() {
 
 function draw() {
   background(10);
+  buildings();
   let eye = map(dronex,0,width, width/2 - 50, width/2 + 50);
   fill(255);
   noStroke();
@@ -77,9 +82,11 @@ function draw() {
     let passedTime = millis() - savedTime;
     if (passedTime > totalTime) {
       fear=fear+1;
-      if (active<49) {
+      if (active<99) {
         active=active+1;
+        // console.log(active);
       }
+      
       savedTime = millis(); // Save the current time to restart the timer!
     }
     drone();
@@ -112,11 +119,11 @@ function draw() {
 
   noStroke();
   fill(255, 0, 0);
-  rect((width/2)-10, droney-30, fear, 7,5);
+  rect((width/2)-10, droney-30, (width/2)-10+fear, droney-30+7,5);
   noFill();
   stroke(0);
   strokeWeight(1);
-  rect((width/2)-11, droney-32, 105, 11,5);
+  rect((width/2)-11, droney-32, (width/2)-11+105, droney-30+11,5);
 }
 
 function restart() {
@@ -131,6 +138,30 @@ function restart() {
     _people[i] = newpeople;
   }
 }
+
+function buildings(){
+  noStroke();
+  fill(0,100,100,20);
+  for(let i =a ; i < width; i += 100){
+    rect(i,.8*height,i+50,.6*height);
+  }
+  fill(100,20);
+  for(let i = b ; i < width; i += 100){
+    rect(i,height,i+30,.8*height);
+  }
+  fill(0,100,200,50);
+  ellipse(s,.2*height,50,50);
+  ellipse(s+30,.25*height,100,50);
+  rect(s+100, .2*height, s+200, .19*height)
+  rect(s-50, .25*height, s-150, .24*height)
+  a += 1;
+  if(a>50) a=-50;
+  b -= 1;
+  if(b<-100) b=0;
+  s -= 1;
+  if(s<-200) s=width+200;
+}
+
 
 
 class People {

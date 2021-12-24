@@ -20,7 +20,7 @@ html, body {
 .container0{
   grid-column: span 1;
   padding: 1em;
-  margin: 1em;
+  margin: .1em;
 }
 
 h1{
@@ -32,7 +32,7 @@ h1{
 .container1{
   grid-column: span 2;
   /* padding: 1em; */
-  margin: .1em;
+  /* margin: .1em; */
 }
 
 p{
@@ -62,12 +62,14 @@ p{
 .btn{
   min-width: 65px;
   max-width: 65px;
-  font-size: 2rem;
-  padding: .4em .4em;
+  min-height: 65px;
+  max-height: 65px;
+  font-size: 1em;
+  /* padding: 1em 1em; */
   margin: .7em;
-  background-color: #fa003670;
+  background-color: #1128f881;
   border: none;
-  color: white;
+  color: rgb(204, 202, 202);
   font-weight: bold;
   text-transform: uppercase;
   align-self: center;
@@ -75,5 +77,5 @@ p{
 }
 
 .btn:active{
-  background-color: #f8d3db6b;
+  background-color: #f84b706b;
 }
