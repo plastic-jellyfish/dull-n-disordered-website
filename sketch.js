@@ -34,7 +34,7 @@ function setup() {
   s = width;
   textFont(font);
   textSize(12);
-  fear = 90;
+  fear = 0;
   rectMode(CORNERS);
 }
 
