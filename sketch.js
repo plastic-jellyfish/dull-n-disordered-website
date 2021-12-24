@@ -104,6 +104,7 @@ function draw() {
     reset.style('padding','25px')
     reset.position(_width/2-120, _height/2+50)
     reset.style('width','200px')
+    reset.style('box-shadow', '10px 10px #000')
     reset.mousePressed(restart)
   }
 
