@@ -17,13 +17,17 @@ let sc=0;
 let numYellow =10;
 let savedTime1 = 0;
 let activeYellow;
-let numPower =5;
+let numPower =1;
 let activePower=0;
 let font, font1;
 let overlay = document.querySelector('.overlay')
 let share = document.querySelector('.share')
 let resign1 = document.querySelector('.resign-button1')
 let resign2 = document.querySelector('.resign-button2')
+let scoreDiv = document.querySelector('.scoreDiv')
+let notification = document.querySelector('.notification')
+let notify = document.getElementById('notify')
+let scr = document.getElementById('score')
 const title = window.document.title
 let dShow=0,wShow=0;
 let score =0;
@@ -78,8 +82,8 @@ function shareLink(){
       url: 'https://dull-n-disordered.netlify.app/'
     }) 
     .then(() => {
-      console.log('Thanks for sharing!')
-      console.log("GameOver! Score:"+score)
+      // console.log('Thanks for sharing!')
+      // console.log("GameOver! Score:"+score)
     })
     .catch(console.error)
   } else{
@@ -144,6 +148,8 @@ function _Drone() {
   let text1 = document.getElementById('droneText')
   if(dShow ==0) text1.classList.add('show')
   if(dShow ==0) resign1.classList.add('show')
+  if(dShow ==0) notification.classList.add('show')
+  if(dShow ==0) scoreDiv.classList.add('show')
   let press = document.querySelector('.Shoot')
   if(dShow ==0) press.classList.add('show')
   let bg1 = document.querySelector('.parent')
@@ -164,6 +170,8 @@ function _Drone() {
     bg1.classList.remove('wired')
     press.classList.remove('show')
     resign1.classList.remove('show')
+    notification.classList.remove('show')
+    scoreDiv.classList.remove('show')
     overlay.classList.add('show')
     _DroneFlag =0;
     _WiredFlag =0;
@@ -173,6 +181,8 @@ function _Drone() {
   })
 
   background(10);
+  scr.innerText = '[ '+score +' ] CREDITS'
+  _notify();
   buildings();
   let eye = map(dronex,0,width, width/2 - 50, width/2 + 50);
   fill(255);
@@ -225,7 +235,8 @@ function _Drone() {
   if (fear>=100) {
     overlay.classList.add('show')
     dOverlay.classList.remove('show')
-    let reset = createP('Dull Day & Fine Job! You killed '+devkill+' Deviants & '+civilian+' Civilians today.\n Continue working Next Shift?');
+    notification.classList.remove('show')
+    let reset = createP('Dull Day & Fine Job! You killed '+devkill+' Deviants & '+civilian+' Civilians today.Your Earned '+ score +' Credits. Continue working Next Shift?');
     reset.style('background','#0050ff')
     reset.style('font-size','20px')
     reset.style('border','0')
@@ -240,7 +251,7 @@ function _Drone() {
     yes.style('font-size','20px')
     yes.style('border','0')
     yes.style('padding','25px')
-    yes.position(_width/2-50, _height/2)
+    yes.position(_width/2-50, _height/2+25)
     yes.style('width','100px')
     // yes.style('height','400px')
     yes.style('box-shadow', '2px 2px #000')
@@ -256,7 +267,7 @@ function _Drone() {
     no.style('font-size','20px')
     no.style('border','0')
     no.style('padding','25px')
-    no.position(_width/2-50, _height/2+100)
+    no.position(_width/2-50, _height/2+125)
     no.style('width','100px')
     // yes.style('height','400px')
     no.style('box-shadow', '2px 2px #000')
@@ -267,6 +278,8 @@ function _Drone() {
       press.classList.remove('show')
       bg1.classList.remove('drone')
       resign1.classList.remove('show')
+      notification.classList.remove('show')
+      scoreDiv.classList.remove('show')
       overlay.classList.add('show')
       _DroneFlag =0;
       setScore.call();
@@ -294,12 +307,17 @@ function _Drone() {
   rect((width/2)-11, droney-32, (width/2)-11+105, droney-30+11,5);
 }
 
-function setScore(){
-  // if(sendScore == 1){
-    // let response = axios.put('/score',{score:score})
-    // console.log('scoreSet', response)
-    // sendScore=0;
-  // }
+function _notify(){
+  if (civilian >= 2 && civilian < 5) {notify.innerText = 'You killed civilians. You might get into trouble.'; notification.style.backgroundColor = "#0584d84d"; }
+  if (civilian >= 5 && civilian < 10) {notify.innerText = 'You killed '+ civilian +' civilians. This is becoming a News.'; notification.style.backgroundColor = "#0805d84d";}
+  if (civilian >= 10 && civilian < 15) {notify.innerText = 'Protests have started against you. Be prepared to answer your Boss.'; notification.style.backgroundColor = "#7905d84d";}
+  if (civilian >= 15 && civilian < 20) {notify.innerText = 'Protests have started against you. Be prepared to answer your Boss.'; notification.style.backgroundColor = "#d805cd4d";}
+  if (civilian >= 20 && civilian < 25) {notify.innerText = 'Protests have started against you. Be prepared to answer your Boss.'; notification.style.backgroundColor = "#f506694d";}
+  if (civilian >= 25 && civilian < 30) {notify.innerText = 'You killed civilians. You might get into trouble.'; notification.style.backgroundColor = "#f5061a5b"; }
+  if (civilian >= 30 && civilian < 35) {notify.innerText = 'You killed '+ civilian +' civilians. This is becoming a News.'; notification.style.backgroundColor = "#f536065b";}
+  if (civilian >= 35 && civilian < 40) {notify.innerText = 'Protests have started against you. Be prepared to answer your Boss.'; notification.style.backgroundColor = "#f5720667";}
+  if (civilian >= 40 && civilian < 45) {notify.innerText = 'Protests have started against you. Be prepared to answer your Boss.'; notification.style.backgroundColor = "#f506e967";}
+  if (civilian >= 45 && civilian < 100) {notify.innerText = 'Protests have started against you. Be prepared to answer your Boss.'; notification.style.backgroundColor = "#f5060667";}
 }
 
 function restartDrone() {
@@ -321,6 +339,8 @@ function restartDrone() {
   textSize(12);
   fear = 0;
   rectMode(CORNERS);
+  notify.innerText = 'People are protesting against the Drone Operators. You might lose your job soon.'; 
+  notification.style.backgroundColor = "#059cd84d"; 
 
   // _people = new People[numPeople];
   for (let i=0; i<numPeople; i++) {
@@ -492,7 +512,7 @@ function drone() {
             }
             else if ((_people[i].deviant == 0) && (_people[i].life==1)) {
               civilian=civilian+1;
-              score +=1;
+              if(score > 0) score -=1;
               fear=fear+1;
             }
             _people[i].kill();
@@ -518,6 +538,7 @@ function _Wired() {
   let text = document.getElementById('wiredText')
   if(wShow == 0) text.classList.add('show')
   if(wShow ==0) resign2.classList.add('show')
+  if(wShow ==0) scoreDiv.classList.add('show')
   let bg = document.querySelector('.parent')
   bg.classList.add('wired')
 
@@ -530,11 +551,13 @@ function _Wired() {
 
   background(150);
   _WiredFlag = 1;
+  scr.innerText = 'SCORE [ '+score +' ]'
 
   resign2.addEventListener('click' , () => {
     title.classList.remove('show')
     text.classList.remove('show')
     resign2.classList.remove('show')
+    scoreDiv.classList.remove('show')
     bg.classList.remove('wired')
     _WiredFlag = 0;
     _DroneFlag =0;
@@ -582,7 +605,7 @@ function _Wired() {
 
     overlay.classList.add('show')
     wOverlay.classList.remove('show')
-    let reset = createP('Good Job! The Red Circles are destructed and you have unwired all the Yellows. Want to Un-wire more?');
+    let reset = createP('Good Job! The Red Circles are destructed and you have unwired all the Yellows. You made '+ score +' points. Want to Un-wire more?');
     reset.style('background','#0050ff')
     reset.style('font-size','20px')
     reset.style('border','0')
@@ -597,7 +620,7 @@ function _Wired() {
     yes.style('font-size','20px')
     yes.style('border','0')
     yes.style('padding','25px')
-    yes.position(_width/2-50, _height/2)
+    yes.position(_width/2-50, _height/2+25)
     yes.style('width','100px')
     // yes.style('height','400px')
     yes.style('box-shadow', '2px 2px #000')
@@ -613,7 +636,7 @@ function _Wired() {
     no.style('font-size','20px')
     no.style('border','0')
     no.style('padding','25px')
-    no.position(_width/2-50, _height/2+100)
+    no.position(_width/2-50, _height/2+125)
     no.style('width','100px')
     // yes.style('height','400px')
     no.style('box-shadow', '2px 2px #000')
@@ -623,6 +646,7 @@ function _Wired() {
       text.classList.remove('show')
       bg.classList.remove('wired')
       resign2.classList.remove('show')
+      scoreDiv.classList.remove('show')
       _WiredFlag =0;
       setScore.call();
       score = 0;
@@ -671,7 +695,7 @@ class PeopleYellow {
   }
 
   move() {
-    if ((this.wired==1) ||((this.wired==0)&&(this.activePower==0))) {
+    if ((this.wired==1) ||((this.wired==0)&&(activePower==0))) {
       if ((this.x>(mouseX-10))&&(this.x<(mouseX+10))&&(this.y>(mouseY-10))&&(this.y<(mouseY+10))) {
         this.talk();
         let passedTime = millis() - savedTime;
@@ -773,12 +797,19 @@ class Power {
   }
 
   scan()
-  {
+  { let scanFactor = 1;
+    if(activePower == 5 ) scanFactor = 1;
+    if(activePower == 4 ) scanFactor = 1;
+    if(activePower == 3 ) scanFactor = 0.95;
+    if(activePower == 2 ) scanFactor = 0.9;
+    if(activePower == 1 ) scanFactor = 0.85;
+
     let passedTime1 = millis() - savedTime1;
-    if (passedTime1 > (1*totalTime)) {
+    if (passedTime1 > (scanFactor * totalTime)) {
 
       if ((_peopleYellow[sc].wired)==0) {
         _peopleYellow[sc].wired=1;
+        if(score>0) score -= 1;
       }
 
       sc=sc+1;
@@ -795,7 +826,6 @@ class Power {
         if ((_peopleYellow[j].wired==0)&&(_power[i].plife==1)) {
 
           if ((_peopleYellow[j].x>=(_power[i].px-20)) && (_peopleYellow[j].x<=(_power[i].px+20))&&(_peopleYellow[j].y>=(_power[i].py-20)) && (_peopleYellow[j].y<=(_power[i].py+20))) {
-            //              print(" x:"+_peopleYellow[j].x+" px:"+_power[i].px+" y:"+_peopleYellow[j].y+" py:"+_power[i].py);
             activeYellow=activeYellow+1;
             if (activeYellow==1) {
               _power[i].strength=3;
@@ -806,7 +836,6 @@ class Power {
             else if (activeYellow==3) {
               _power[i].strength=1;
             }
-            //           print(" Pow:"+i+" Strength:"+_power[i].strength+" activeYellow:"+activeYellow);
           }
           if (activeYellow>=4) {
             _power[i].plife=0;
@@ -819,7 +848,7 @@ class Power {
             }
             activeYellow=0;
             activePower=activePower-1;
-            score+=10;
+            score += 10;
             // console.log(score);
           }
         }
@@ -829,17 +858,25 @@ class Power {
   }
 
   recover() {
+    let recoverFactor = 120;
+    if(activePower == 5 ) recoverFactor = 120;
+    if(activePower == 4 ) recoverFactor = 120;
+    if(activePower == 3 ) recoverFactor = 100;
+    if(activePower == 2 ) recoverFactor = 90;
+    if(activePower == 1 ) recoverFactor = 80;
+
     if (this.plife==0) {
       let passedTime2 = millis() - this.recoverTime;
       fill(0);
       noStroke();
       textSize(18);
       textAlign(CENTER,CENTER);
-      text(int(((120*totalTime)/1000)-(passedTime2/1000)), this.px, this.py);
-      if (passedTime2 > (120*totalTime)) {
+      text(int(((recoverFactor*totalTime)/1000)-(passedTime2/1000)), this.px, this.py);
+      if (passedTime2 > (recoverFactor*totalTime)) {
         this.plife=1;
         this.strength=4;
-        this.activePower=this.activePower+1;
+        activePower=activePower+1;
+        if(score>0) score -= 10
       }
     }
   }
