@@ -100,6 +100,7 @@ function shareLink(){
 //******************************************************************************************//
 
 function _Menu(){
+  score =0;
   removeElements()
   overlay.classList.add('show')
   share.classList.add('show')
@@ -338,6 +339,7 @@ function restartDrone() {
   textFont(font);
   textSize(12);
   fear = 0;
+  score = 0;
   rectMode(CORNERS);
   notify.innerText = 'People are protesting against the Drone Operators. You might lose your job soon.'; 
   notification.style.backgroundColor = "#059cd84d"; 
