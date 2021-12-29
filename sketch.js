@@ -177,8 +177,8 @@ function _Drone() {
     overlay.classList.add('show')
     _DroneFlag =0;
     _WiredFlag =0;
-    console.log(_DroneFlag, _WiredFlag, score)
-    setScore.call();
+    // console.log(_DroneFlag, _WiredFlag, score)
+    // setScore.call();
     score = 0;
   })
 
@@ -284,7 +284,7 @@ function _Drone() {
       scoreDiv.classList.remove('show')
       overlay.classList.add('show')
       _DroneFlag =0;
-      setScore.call();
+      // setScore.call();
       score = 0;
     })
     // console.log(score)
@@ -495,6 +495,7 @@ function drone() {
           }
           else if ((_people[i].deviant == 0) && (_people[i].life==1)) {
             civilian=civilian+1;
+            if(score > 0 && civilian > 10) score -=1;
             fear=fear+1;
           }
           _people[i].kill();
