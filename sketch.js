@@ -26,7 +26,8 @@ let resign1 = document.querySelector('.resign-button1')
 let resign2 = document.querySelector('.resign-button2')
 let scoreDiv = document.querySelector('.scoreDiv')
 let notification = document.querySelector('.notification')
-let notify = document.getElementById('notify')
+let notify1 = document.getElementById('notify1')
+let notify2 = document.getElementById('notify2')
 let scr = document.getElementById('score')
 const title = window.document.title
 let dShow=0,wShow=0;
@@ -309,16 +310,20 @@ function _Drone() {
 }
 
 function _notify(){
-  if (civilian >= 2 && civilian < 5) {notify.innerText = 'You killed civilians. You might get into trouble.'; notification.style.backgroundColor = "#0584d84d"; }
-  if (civilian >= 5 && civilian < 10) {notify.innerText = 'You killed '+ civilian +' civilians. This is getting Media attention.'; notification.style.backgroundColor = "#0805d84d";}
-  if (civilian >= 10 && civilian < 15) {notify.innerText = 'You are now trending in social media #stopdronekillings'; notification.style.backgroundColor = "#7905d84d";}
-  if (civilian >= 15 && civilian < 20) {notify.innerText = 'Protests have started against you.'; notification.style.backgroundColor = "#d805cd4d";}
-  if (civilian >= 20 && civilian < 25) {notify.innerText = 'You are Boss is worried for getting attention. Be prepared to answer your Boss.'; notification.style.backgroundColor = "#f506694d";}
-  if (civilian >= 25 && civilian < 30) {notify.innerText = '"Hey Can you Keep LowProfile at work"--Boss '; notification.style.backgroundColor = "#f5061a5b"; }
-  if (civilian >= 30 && civilian < 35) {notify.innerText = 'Can you shut the music and pay attention at work. This is becoming a sensation.'; notification.style.backgroundColor = "#f536065b";}
-  if (civilian >= 35 && civilian < 40) {notify.innerText = ' "Protestors are at our house. Be prepared to face them on your way back."-- Housemate '; notification.style.backgroundColor = "#f5720667";}
-  if (civilian >= 40 && civilian < 45) {notify.innerText = ' "Dont go on like this. You got to work tomorrow."-- Work friend'; notification.style.backgroundColor = "#f506e967";}
-  if (civilian >= 45 && civilian < 100) {notify.innerText = ' "You are on killing spree. Why dont you quit today and come back later"--Boss '; notification.style.backgroundColor = "#f5060667";}
+  if (civilian >= 2 && civilian < 5) {notify1.innerText = 'You killed civilians. You might get into trouble.'; notification.style.backgroundColor = "#0584d84d"; }
+  if (civilian >= 5 && civilian < 10) {notify1.innerText = 'You killed '+ civilian +' civilians. This is getting Media attention.'; notification.style.backgroundColor = "#0805d84d";}
+  if (civilian >= 10 && civilian < 15) {notify1.innerText = 'You are now trending in social media #stopdronekillings'; notification.style.backgroundColor = "#7905d84d";}
+  if (civilian >= 15 && civilian < 20) {notify1.innerText = 'Protests have started against you.'; notification.style.backgroundColor = "#d805cd4d";}
+  if (civilian >= 20 && civilian < 25) {notify1.innerText = 'You are Boss is worried for getting attention. Be prepared to answer your Boss.'; notification.style.backgroundColor = "#f506694d";}
+  if (civilian >= 25 && civilian < 30) {notify1.innerText = '"Hey Can you Keep LowProfile at work"--Manager '; notification.style.backgroundColor = "#f5061a5b"; }
+  if (civilian >= 30 && civilian < 35) {notify1.innerText = 'Can you shut the music and pay attention at work. This is becoming a sensation.'; notification.style.backgroundColor = "#f536065b";}
+  if (civilian >= 35 && civilian < 40) {notify1.innerText = ' "Protestors are at our house. Be prepared to face them on your way back."-- Housemate '; notification.style.backgroundColor = "#f5720667";}
+  if (civilian >= 40 && civilian < 45) {notify1.innerText = ' "Dont go on like this. You got to work tomorrow."-- Work friend'; notification.style.backgroundColor = "#f506e967";}
+  if (civilian >= 45 && civilian < 100) {notify1.innerText = ' "You are on killing spree. Why dont you quit today and come back later"--Manager '; notification.style.backgroundColor = "#f5060667";}
+
+  if (fear >= 20 && devkill < 5) {notify2.innerText = 'Email: "You have killed only '+devkill+' deviants. When are you planning to start your work?" ';}
+  if (fear >= 40 && devkill < 10) {notify2.innerText = 'Email: "Your performance is very low. You will have to sit for enquiry" '; }
+  if (fear >= 60 && devkill < 15) {notify2.innerText = 'Email: "You are underperforming. Come and meet us after work" '; }
 }
 
 function restartDrone() {
@@ -341,7 +346,8 @@ function restartDrone() {
   fear = 0;
   score = 0;
   rectMode(CORNERS);
-  notify.innerText = 'People are protesting against the Drone Operators. You might lose your job soon.'; 
+  notify1.innerText = 'People are protesting against the Drone Operators. You might lose your job soon.'; 
+  notify2.innerText = 'Email:"Perform at your job if you expect a pay raise" '; 
   notification.style.backgroundColor = "#059cd84d"; 
 
   // _people = new People[numPeople];
@@ -514,7 +520,7 @@ function drone() {
             }
             else if ((_people[i].deviant == 0) && (_people[i].life==1)) {
               civilian=civilian+1;
-              if(score > 0) score -=1;
+              if(score > 0 && civilian > 10) score -=1;
               fear=fear+1;
             }
             _people[i].kill();
