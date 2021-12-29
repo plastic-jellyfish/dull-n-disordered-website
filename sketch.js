@@ -17,7 +17,7 @@ let sc=0;
 let numYellow =10;
 let savedTime1 = 0;
 let activeYellow;
-let numPower =1;
+let numPower =5;
 let activePower=0;
 let font, font1;
 let overlay = document.querySelector('.overlay')
@@ -309,15 +309,15 @@ function _Drone() {
 
 function _notify(){
   if (civilian >= 2 && civilian < 5) {notify.innerText = 'You killed civilians. You might get into trouble.'; notification.style.backgroundColor = "#0584d84d"; }
-  if (civilian >= 5 && civilian < 10) {notify.innerText = 'You killed '+ civilian +' civilians. This is becoming a News.'; notification.style.backgroundColor = "#0805d84d";}
-  if (civilian >= 10 && civilian < 15) {notify.innerText = 'Protests have started against you. Be prepared to answer your Boss.'; notification.style.backgroundColor = "#7905d84d";}
-  if (civilian >= 15 && civilian < 20) {notify.innerText = 'Protests have started against you. Be prepared to answer your Boss.'; notification.style.backgroundColor = "#d805cd4d";}
-  if (civilian >= 20 && civilian < 25) {notify.innerText = 'Protests have started against you. Be prepared to answer your Boss.'; notification.style.backgroundColor = "#f506694d";}
-  if (civilian >= 25 && civilian < 30) {notify.innerText = 'You killed civilians. You might get into trouble.'; notification.style.backgroundColor = "#f5061a5b"; }
-  if (civilian >= 30 && civilian < 35) {notify.innerText = 'You killed '+ civilian +' civilians. This is becoming a News.'; notification.style.backgroundColor = "#f536065b";}
-  if (civilian >= 35 && civilian < 40) {notify.innerText = 'Protests have started against you. Be prepared to answer your Boss.'; notification.style.backgroundColor = "#f5720667";}
-  if (civilian >= 40 && civilian < 45) {notify.innerText = 'Protests have started against you. Be prepared to answer your Boss.'; notification.style.backgroundColor = "#f506e967";}
-  if (civilian >= 45 && civilian < 100) {notify.innerText = 'Protests have started against you. Be prepared to answer your Boss.'; notification.style.backgroundColor = "#f5060667";}
+  if (civilian >= 5 && civilian < 10) {notify.innerText = 'You killed '+ civilian +' civilians. This is getting Media attention.'; notification.style.backgroundColor = "#0805d84d";}
+  if (civilian >= 10 && civilian < 15) {notify.innerText = 'You are now trending in social media #stopdronekillings'; notification.style.backgroundColor = "#7905d84d";}
+  if (civilian >= 15 && civilian < 20) {notify.innerText = 'Protests have started against you.'; notification.style.backgroundColor = "#d805cd4d";}
+  if (civilian >= 20 && civilian < 25) {notify.innerText = 'You are Boss is worried for getting attention. Be prepared to answer your Boss.'; notification.style.backgroundColor = "#f506694d";}
+  if (civilian >= 25 && civilian < 30) {notify.innerText = '"Hey Can you Keep LowProfile at work"--Boss '; notification.style.backgroundColor = "#f5061a5b"; }
+  if (civilian >= 30 && civilian < 35) {notify.innerText = 'Can you shut the music and pay attention at work. This is becoming a sensation.'; notification.style.backgroundColor = "#f536065b";}
+  if (civilian >= 35 && civilian < 40) {notify.innerText = ' "Protestors are at our house. Be prepared to face them on your way back."-- Housemate '; notification.style.backgroundColor = "#f5720667";}
+  if (civilian >= 40 && civilian < 45) {notify.innerText = ' "Dont go on like this. You got to work tomorrow."-- Work friend'; notification.style.backgroundColor = "#f506e967";}
+  if (civilian >= 45 && civilian < 100) {notify.innerText = ' "You are on killing spree. Why dont you quit today and come back later"--Boss '; notification.style.backgroundColor = "#f5060667";}
 }
 
 function restartDrone() {
@@ -573,7 +573,7 @@ function _Wired() {
       if (_power[j].plife==1) {
         _power[j].scan();
       }
-      _power[j].recover();
+      _power[j].recover(j);
     }
 
     for (let i =0 ; i<numYellow;i++) {
@@ -800,9 +800,9 @@ class Power {
   { let scanFactor = 1;
     if(activePower == 5 ) scanFactor = 1;
     if(activePower == 4 ) scanFactor = 1;
-    if(activePower == 3 ) scanFactor = 0.95;
-    if(activePower == 2 ) scanFactor = 0.9;
-    if(activePower == 1 ) scanFactor = 0.85;
+    if(activePower == 3 ) scanFactor = 0.9;
+    if(activePower == 2 ) scanFactor = 0.85;
+    if(activePower == 1 ) scanFactor = 0.8;
 
     let passedTime1 = millis() - savedTime1;
     if (passedTime1 > (scanFactor * totalTime)) {
@@ -857,13 +857,13 @@ class Power {
     }
   }
 
-  recover() {
+  recover(j) {
     let recoverFactor = 120;
-    if(activePower == 5 ) recoverFactor = 120;
-    if(activePower == 4 ) recoverFactor = 120;
-    if(activePower == 3 ) recoverFactor = 100;
-    if(activePower == 2 ) recoverFactor = 90;
-    if(activePower == 1 ) recoverFactor = 80;
+    if(j == 0 ) recoverFactor = 120;
+    if(j == 1 ) recoverFactor = 100;
+    if(j == 2 ) recoverFactor = 90;
+    if(j == 3 ) recoverFactor = 80;
+    if(j == 4 ) recoverFactor = 60;
 
     if (this.plife==0) {
       let passedTime2 = millis() - this.recoverTime;

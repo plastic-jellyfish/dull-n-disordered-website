@@ -184,27 +184,27 @@ p{
 .resign{
   opacity: 1;
   position: absolute;
-  bottom: 5%;
-  right: 5%;
+  bottom: 5vh;
+  right: 0;
   /* background: #001274; */
 }
 
 .scoreDiv{
   opacity: 1;
   position: absolute;
-  bottom: 5%;
-  left: 5%;
+  bottom: 5vh;
+  left: 0;
   /* background: #001274; */
 }
 
 #score{
   font-size: 1em;
-  margin: 1em;  
+  /* margin: 1em;   */
   padding: .5em;
   background-color: #00505a8f;
-  border: 2px;
-  color: rgb(163, 163, 162);
-  justify-self:center;
+  /* border: 2px; */
+  color: #cecece;
+  /* justify-self:center; */
 }
 
 .notification{
@@ -260,12 +260,13 @@ p{
 .resign-button1,
 .resign-button2{
   font-size: .8em;
-  margin: 1em;  
+  /* margin: 1em;  */
   padding: .5em;
   background-color: #00505a8f;
   border: 2px;
-  color: rgb(163, 163, 162);
-  justify-self:center;
+  color: #cecece;
+  text-decoration: underline;
+  /* justify-self:center; */
 }
 
 .info{
