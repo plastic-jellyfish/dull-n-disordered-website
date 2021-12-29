@@ -75,7 +75,7 @@ function shareLink(){
     navigator.share({
       title: `${title}`, 
       text: 'Play Dull-n-Disordered',
-      url: 'http://127.0.0.1:5500/index.html'
+      url: 'https://dull-n-disordered.netlify.app/'
     }) 
     .then(() => {
       console.log('Thanks for sharing!')
@@ -86,8 +86,8 @@ function shareLink(){
     console.log('No Navigator')
     document.querySelector('.shareOverlay').classList.add('show')
     document.querySelector('.sharePanel').classList.add('show')
-    document.getElementById('url').innerHTML = 'http://127.0.0.1:5500/index.html'
-    document.getElementById('url').href = 'http://127.0.0.1:5500/index.html'
+    document.getElementById('url').innerHTML = 'https://dull-n-disordered.netlify.app/'
+    document.getElementById('url').href = 'https://dull-n-disordered.netlify.app/'
   }
 }
 
