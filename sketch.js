@@ -489,6 +489,7 @@ function drone() {
         if ((_people[i].x >= (dronex-_people[i].head)) && (_people[i].x <= (dronex+_people[i].head))) {
           if ((_people[i].deviant == 1) && (_people[i].life==1)) {
             devkill=devkill+1;
+            score +=1;
             if (fear>10) {
               fear=fear-1;
             }
@@ -810,8 +811,8 @@ class Power {
     if(activePower == 5 ) scanFactor = 1;
     if(activePower == 4 ) scanFactor = 1;
     if(activePower == 3 ) scanFactor = 0.9;
-    if(activePower == 2 ) scanFactor = 0.85;
-    if(activePower == 1 ) scanFactor = 0.8;
+    if(activePower == 2 ) scanFactor = 0.8;
+    if(activePower == 1 ) scanFactor = 0.75;
 
     let passedTime1 = millis() - savedTime1;
     if (passedTime1 > (scanFactor * totalTime)) {
